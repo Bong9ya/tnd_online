@@ -3,14 +3,14 @@
   'use strict';
   const C = window.TndCore, $ = id => document.getElementById(id);
   const KEY = 'tnd-online-workspace-v1';
-  const fields = ['name','sku','cost','salePrice','customerShipping','shippingCost','packingCost','feeRate','fixedFee','feeOnShipping','lowStock'];
+  const fields = ['name','sku','supplier','cost','salePrice','customerShipping','shippingCost','packingCost','feeRate','fixedFee','feeOnShipping','lowStock'];
   const fmt = n => typeof n === 'bigint' ? n.toLocaleString('ko-KR') : Number(n).toLocaleString('ko-KR');
   const won = n => fmt(n) + '원';
   const esc = text => String(text ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const icon = n => '<svg aria-hidden="true"><use href="#i-' + n + '"/></svg>';
   const uuid = () => window.crypto?.randomUUID ? window.crypto.randomUUID() : Date.now().toString(36) + '-' + Math.random().toString(36).slice(2);
   const now = () => new Date().toISOString();
-  let state = C.emptyState(), lastRaw = null, blocked = false, historyLimit = 100, toastTimer;
+  let state = C.emptyState(), lastRaw = null, blocked = false, historyLimit = 100, toastTimer, activeSupplier = 'all', activeView = 'products';
   function alertStorage(message) { $('storage-error').textContent = message; $('storage-error').hidden = false; $('save-status').textContent = '저장 상태 확인 필요'; }
   function load() {
     try { lastRaw = localStorage.getItem(KEY); if (lastRaw !== null) state = C.validateState(JSON.parse(lastRaw)); $('save-status').innerHTML = '<span></span>' + (lastRaw ? '저장된 자료 불러옴' : '브라우저 자동 저장'); }
@@ -36,7 +36,7 @@
   function toast(message) { clearTimeout(toastTimer); $('toast').querySelector('span').textContent = message; $('toast').hidden = false; toastTimer = setTimeout(() => { $('toast').hidden = true; }, 3500); }
   function formError(id, message) { $(id).textContent = message; $(id).hidden = !message; }
   function rawDraft(preview = false) {
-    return Object.fromEntries(fields.map(key => [key, key === 'feeOnShipping' ? $(key).checked : preview && $(key).value === '' && key !== 'sku' ? (key === 'name' ? '미리보기' : 0) : $(key).value]));
+    return Object.fromEntries(fields.map(key => [key, key === 'feeOnShipping' ? $(key).checked : preview && $(key).value === '' && !['sku','supplier'].includes(key) ? (key === 'name' ? '미리보기' : 0) : $(key).value]));
   }
   function preview() {
     try {
@@ -56,6 +56,7 @@
   }
   function resetEditor(focus = false) {
     $('product-form').reset(); $('product-id').value = '';
+    $('supplier').value = activeSupplier.startsWith('supplier:') ? supplierLabel() : '';
     $('editor-title').textContent = '새 상품 등록';
     $('save-product-btn').innerHTML = icon('plus') + '<span>상품 등록</span>';
     $('cancel-edit-btn').hidden = true; $('initial-stock-field').hidden = false; $('stock-edit-hint').hidden = true;
@@ -76,45 +77,92 @@
     $('cancel-edit-btn').hidden = false; $('initial-stock-field').hidden = true; $('stock-edit-hint').hidden = false;
     preview(); focusEditor();
   }
+  function supplierLabel(token = activeSupplier) {
+    if (token === 'all') return '전체 매입처';
+    if (token === 'unassigned') return '매입처 미지정';
+    return token.slice('supplier:'.length);
+  }
+  function renderSupplierOptions(groups) {
+    if (activeSupplier !== 'all' && !groups.some(group => group.key === activeSupplier)) activeSupplier = 'all';
+    const options = '<option value="all">전체 매입처</option>' + groups.map(group => '<option value="' + esc(group.key) + '">' + esc(group.name || '매입처 미지정') + ' (' + fmt(group.productCount) + ')</option>').join('');
+    ['supplier-filter','history-supplier-filter'].forEach(id => { $(id).innerHTML = options; $(id).value = activeSupplier; });
+    $('supplier-options').innerHTML = groups.filter(group => group.name).map(group => '<option value="' + esc(group.name) + '"></option>').join('');
+  }
+  function renderSuppliers(groups) {
+    $('supplier-count').textContent = fmt(groups.length);
+    $('suppliers-empty').hidden = groups.length > 0;
+    $('supplier-table-wrap').hidden = groups.length === 0;
+    $('supplier-rows').innerHTML = groups.map(group => {
+      const name = group.name || '매입처 미지정';
+      return '<tr><td><div class="supplier-identity"><span class="supplier-monogram' + (!group.name ? ' muted' : '') + '">' + esc(group.name ? Array.from(group.name).slice(0,2).join('') : '—') + '</span><div class="supplier-name">' + esc(name) + '<span class="supplier-subtitle">' + (group.name ? '매입처별 상품 · 재고' : '상품 수정에서 매입처를 지정하세요') + '</span></div></div></td>' +
+        '<td class="number">' + fmt(group.productCount) + '개</td><td class="number"><strong>' + fmt(group.stock) + '</strong>개</td><td class="number supplier-value">' + won(group.stockValue) + '</td>' +
+        '<td class="number' + (group.lowStockCount ? ' supplier-low' : '') + '">' + fmt(group.lowStockCount) + '개 상품</td><td><div class="table-actions"><button class="supplier-view-button" data-supplier-action="view" data-supplier="' + esc(group.key) + '" aria-label="' + esc(name) + ' 상품 보기">상품 보기</button>' +
+        (group.name ? '<button class="icon-button" data-supplier-action="rename" data-supplier="' + esc(group.key) + '" aria-label="' + esc(name) + ' 이름 변경">' + icon('edit') + '</button>' : '') + '</div></td></tr>';
+    }).join('');
+    const named = groups.filter(group => group.name).length;
+    $('supplier-summary-note').textContent = '매입처 ' + fmt(named) + '곳' + (groups.some(group => !group.name) ? ' · 미지정 상품 별도 표시' : '');
+  }
   function render() {
     const stocks = new Map(state.products.map(p => [p.id, 0]));
     state.movements.forEach(m => stocks.set(m.productId, stocks.get(m.productId) + (m.type === 'in' ? m.quantity : -m.quantity)));
-    const productCount = state.products.length;
-    const stock = state.products.reduce((n,p) => n + stocks.get(p.id), 0);
-    const value = state.products.reduce((n,p) => n + BigInt(p.cost) * BigInt(stocks.get(p.id)), 0n);
-    const low = state.products.filter(p => stocks.get(p.id) <= p.lowStock).length;
-    const stats = {products:[productCount,'개'], stock:[stock,'개'], value:[value,'원'], low:[low,'개 상품']};
+    const groups = C.supplierSummaries(state);
+    renderSupplierOptions(groups);
+    const scoped = C.filterBySupplier(state.products,activeSupplier);
+    const summaryProducts = activeView === 'suppliers' ? state.products : scoped;
+    const stock = summaryProducts.reduce((n,p) => n + stocks.get(p.id), 0);
+    const value = summaryProducts.reduce((n,p) => n + BigInt(p.cost) * BigInt(stocks.get(p.id)), 0n);
+    const low = summaryProducts.filter(p => stocks.get(p.id) <= p.lowStock).length;
+    const stats = {products:[summaryProducts.length,'개'], stock:[stock,'개'], value:[value,'원'], low:[low,'개 상품']};
     Object.entries(stats).forEach(([key,[n,unit]]) => { $('stat-' + key).innerHTML = fmt(n) + '<span>' + unit + '</span>'; });
-    $('nav-count').textContent = fmt(productCount); $('product-count').textContent = fmt(productCount);
+    $('scope-label').textContent = (activeView === 'suppliers' ? '전체 매입처' : supplierLabel()) + ' 기준';
+    $('clear-supplier').hidden = activeView === 'suppliers' || activeSupplier === 'all';
+    $('nav-count').textContent = fmt(state.products.length); $('product-count').textContent = fmt(scoped.length);
     const query = $('search').value.trim().toLocaleLowerCase(), filter = $('stock-filter').value;
-    const list = state.products.filter(p => (!query || (p.name + ' ' + p.sku).toLocaleLowerCase().includes(query)) && (filter === 'all' || C.stockStatus(stocks.get(p.id),p.lowStock) === filter));
-    $('product-empty').hidden = productCount > 0; $('no-results').hidden = productCount === 0 || list.length > 0; $('product-table-wrap').hidden = list.length === 0;
-    $('list-summary').textContent = list.length === productCount ? '등록 상품 ' + fmt(productCount) + '개' : fmt(productCount) + '개 중 ' + fmt(list.length) + '개 표시';
+    const list = scoped.filter(p => (!query || (p.name + ' ' + p.sku + ' ' + p.supplier).toLocaleLowerCase().includes(query)) && (filter === 'all' || C.stockStatus(stocks.get(p.id),p.lowStock) === filter));
+    $('product-empty').hidden = state.products.length > 0;
+    $('no-results').hidden = state.products.length === 0 || list.length > 0;
+    $('product-table-wrap').hidden = list.length === 0;
+    $('list-summary').textContent = (activeSupplier === 'all' ? '' : supplierLabel() + ' · ') + (list.length === scoped.length ? '등록 상품 ' + fmt(scoped.length) + '개' : fmt(scoped.length) + '개 중 ' + fmt(list.length) + '개 표시');
+    $('csv-btn').innerHTML = icon('down') + (activeSupplier === 'all' ? 'CSV 내보내기' : '매입처 CSV');
+    $('csv-btn').title = '현재 매입처의 전체 상품 내보내기 (검색·재고 상태 필터 제외)';
     $('product-rows').innerHTML = list.map(p => {
       const c = C.calculate(p), qty = stocks.get(p.id), status = C.stockStatus(qty,p.lowStock), statusText = {normal:'정상',low:'재고 부족',out:'품절'}[status];
-      return '<tr><td><div class="product-name-cell"><div class="product-initial">' + icon('box') + '</div><div><span class="product-name">' + esc(p.name) + '</span><span class="product-sku">' + esc(p.sku || '코드 미등록') + '</span></div></div></td>' +
+      return '<tr><td><div class="product-name-cell"><div class="product-initial">' + icon('box') + '</div><div><span class="product-name">' + esc(p.name) + '</span><span class="product-sku">' + esc(p.sku || '코드 미등록') + '</span><span class="product-supplier">' + esc(p.supplier || '매입처 미지정') + '</span></div></div></td>' +
         '<td class="number">' + won(p.cost) + '<span class="sub-number">판매 ' + won(p.salePrice) + '</span></td>' +
         '<td class="number"><span class="profit-number' + (c.profit < 0 ? ' negative' : '') + '">' + won(c.profit) + '</span><span class="sub-number">' + (c.margin === null ? '이익률 —' : c.margin.toFixed(1) + '%') + '</span></td>' +
         '<td class="number"><span class="stock-quantity">' + fmt(qty) + '</span><br><span class="stock-badge ' + status + '">' + statusText + '</span></td>' +
         '<td><div class="table-actions"><button class="movement-btn" data-action="movement" data-id="' + esc(p.id) + '" aria-label="' + esc(p.name) + ' 입출고">입출고</button><button class="icon-button" data-action="edit" data-id="' + esc(p.id) + '" aria-label="' + esc(p.name) + ' 수정">' + icon('edit') + '</button></div></td></tr>';
     }).join('');
-    $('history-count').textContent = fmt(state.movements.length);
-    $('history-empty').hidden = state.movements.length > 0; $('history-table-wrap').hidden = !state.movements.length;
+    const ids = new Set(scoped.map(p => p.id)), history = state.movements.filter(m => ids.has(m.productId));
+    $('history-count').textContent = fmt(history.length);
+    $('history-empty').hidden = history.length > 0; $('history-table-wrap').hidden = !history.length;
     const names = new Map(state.products.map(p => [p.id,p]));
-    $('history-rows').innerHTML = state.movements.slice(-historyLimit).reverse().map(m => '<tr><td>' + esc(new Date(m.at).toLocaleString('ko-KR')) + '</td><td><strong>' + esc(names.get(m.productId).name) + '</strong></td><td><span class="stock-badge ' + (m.type === 'in' ? 'normal' : 'out') + '">' + (m.type === 'in' ? '입고' : '출고') + '</span></td><td class="number">' + (m.type === 'in' ? '+' : '−') + fmt(m.quantity) + '</td><td>' + esc(m.note || '—') + '</td></tr>').join('');
-    $('history-more').hidden = state.movements.length <= historyLimit;
+    $('history-rows').innerHTML = history.slice(-historyLimit).reverse().map(m => '<tr><td>' + esc(new Date(m.at).toLocaleString('ko-KR')) + '</td><td><strong>' + esc(names.get(m.productId).name) + '</strong><span class="product-supplier">' + esc(names.get(m.productId).supplier || '매입처 미지정') + '</span></td><td><span class="stock-badge ' + (m.type === 'in' ? 'normal' : 'out') + '">' + (m.type === 'in' ? '입고' : '출고') + '</span></td><td class="number">' + (m.type === 'in' ? '+' : '−') + fmt(m.quantity) + '</td><td>' + esc(m.note || '—') + '</td></tr>').join('');
+    $('history-more').hidden = history.length <= historyLimit;
+    renderSuppliers(groups);
   }
   function switchView(view) {
-    const products = view === 'products';
-    $('products-view').hidden = !products; $('history-view').hidden = products;
+    activeView = view;
+    ['products','history','suppliers'].forEach(name => { $(name + '-view').hidden = name !== view; });
     document.querySelectorAll('[data-view]').forEach(button => {
       const active = button.dataset.view === view; button.classList.toggle('active',active);
       if (active) button.setAttribute('aria-current','page'); else button.removeAttribute('aria-current');
     });
-    $('breadcrumb-current').textContent = products ? '상품 관리' : '입출고 이력';
-    $('page-title').textContent = products ? '상품 수익 · 재고' : '입출고 이력';
-    $('page-description').textContent = products ? '원가부터 재고까지, 판매에 필요한 숫자를 한눈에.' : '재고가 움직인 순간을 빠짐없이 기록하세요.';
+    const titles = {products:['상품 관리','상품 수익 · 재고','원가부터 재고까지, 판매에 필요한 숫자를 한눈에.'],history:['입출고 이력','입출고 이력','매입처별로 재고가 움직인 순간을 확인하세요.'],suppliers:['매입처 관리','매입처별 상품 · 재고','공급사마다 다른 상품과 원가, 한곳에서 관리하세요.']};
+    const [crumb,title,description] = titles[view];
+    $('breadcrumb-current').textContent = crumb; $('page-title').textContent = title; $('page-description').textContent = description;
+    render();
   }
+  function selectSupplier(token) {
+    activeSupplier = token; historyLimit = 100; render();
+  }
+  function openSupplierRename(name) {
+    $('supplier-form').reset(); $('supplier-original').value = name; $('supplier-name').value = name;
+    const count = state.products.filter(p => p.supplier === name).length;
+    $('supplier-rename-note').textContent = fmt(count) + '개 상품의 매입처 이름을 함께 변경합니다. 재고와 입출고 기록은 유지됩니다.';
+    formError('supplier-error',''); $('supplier-dialog').showModal(); $('supplier-name').focus(); $('supplier-name').select();
+  }
+
   function updateMovement() {
     const id = $('movement-product-id').value, current = C.stockFor(state,id), value = $('movement-quantity').value;
     const qty = Number(value), type = document.querySelector('input[name="movement-type"]:checked').value;
@@ -150,7 +198,7 @@
     event.preventDefault(); formError('form-error','');
     try {
       const draft = C.validateProduct(rawDraft()), id = $('product-id').value;
-      if (!C.uniqueSku(state,draft.sku,id)) throw new Error('이미 등록된 상품 코드입니다. 다른 코드를 입력해주세요.');
+      if (!C.uniqueSku(state,draft.sku,id,draft.supplier)) throw new Error('이 매입처에 이미 등록된 상품 코드입니다. 다른 코드를 입력해주세요.');
       let next;
       if (id) {
         if (!state.products.some(p => p.id === id)) throw new Error('수정할 상품을 찾을 수 없습니다. 다시 선택해주세요.');
@@ -191,8 +239,8 @@
     } catch (_) { download('tnd-backup-' + datePart() + '.json',JSON.stringify(state,null,2),'application/json;charset=utf-8'); toast('현재 화면 자료를 백업했습니다.'); }
   });
   $('csv-btn').addEventListener('click',() => {
-    if (!state.products.length) { toast('먼저 상품을 등록해주세요.'); return; }
-    download('tnd-products-' + datePart() + '.csv',C.toCsv(state),'text/csv;charset=utf-8'); toast('전체 상품을 CSV로 내보냈습니다.');
+    if (!C.filterBySupplier(state.products,activeSupplier).length) { toast('먼저 상품을 등록해주세요.'); return; }
+    download('tnd-products-' + datePart() + '.csv',C.toCsv(state,activeSupplier),'text/csv;charset=utf-8'); toast(supplierLabel() + ' 상품을 CSV로 내보냈습니다.');
   });
   $('restore-btn').addEventListener('click',() => $('restore-file').click());
   $('restore-file').addEventListener('change',async event => {
@@ -209,9 +257,9 @@
     try {
       let next = C.emptyState();
       const samples = [
-        {name:'원목 안내판',sku:'SAMPLE-001',cost:4500,salePrice:12900,customerShipping:3000,shippingCost:3200,packingCost:300,feeRate:5.5,fixedFee:0,feeOnShipping:true,lowStock:5,quantity:24},
-        {name:'무지 머그컵',sku:'SAMPLE-002',cost:3800,salePrice:9900,customerShipping:0,shippingCost:3000,packingCost:500,feeRate:6,fixedFee:0,feeOnShipping:false,lowStock:5,quantity:3},
-        {name:'택배 포장 세트',sku:'SAMPLE-003',cost:1200,salePrice:4900,customerShipping:3000,shippingCost:3000,packingCost:100,feeRate:5,fixedFee:0,feeOnShipping:false,lowStock:10,quantity:0}
+        {name:'원목 안내판',sku:'SAMPLE-001',supplier:'우드파트너 (예시)',cost:4500,salePrice:12900,customerShipping:3000,shippingCost:3200,packingCost:300,feeRate:5.5,fixedFee:0,feeOnShipping:true,lowStock:5,quantity:24},
+        {name:'무지 머그컵',sku:'SAMPLE-002',supplier:'리빙도매 (예시)',cost:3800,salePrice:9900,customerShipping:0,shippingCost:3000,packingCost:500,feeRate:6,fixedFee:0,feeOnShipping:false,lowStock:5,quantity:3},
+        {name:'택배 포장 세트',sku:'SAMPLE-003',supplier:'우드파트너 (예시)',cost:1200,salePrice:4900,customerShipping:3000,shippingCost:3000,packingCost:100,feeRate:5,fixedFee:0,feeOnShipping:false,lowStock:10,quantity:0}
       ];
       samples.forEach(sample => {
         const id = uuid(), {quantity,...p} = sample;
@@ -221,11 +269,37 @@
       commit(next); resetEditor(); switchView('products'); toast('예시 데이터입니다. 실제 상품으로 수정해 사용하세요.');
     } catch (error) { toast(error.message); }
   });
+
+  ['supplier-filter','history-supplier-filter'].forEach(id => $(id).addEventListener('change',event => selectSupplier(event.target.value)));
+  $('clear-supplier').addEventListener('click',() => selectSupplier('all'));
+  $('supplier-add-product-btn').addEventListener('click',() => { resetEditor(); focusEditor(); $('supplier').focus({preventScroll:true}); });
+  $('supplier-rows').addEventListener('click',event => {
+    const button = event.target.closest('button[data-supplier-action]'); if (!button) return;
+    if (button.dataset.supplierAction === 'view') {
+      activeSupplier = button.dataset.supplier; $('search').value = ''; $('stock-filter').value = 'all'; switchView('products');
+      $('main').scrollIntoView({block:'start'});
+    } else openSupplierRename(button.dataset.supplier.slice('supplier:'.length));
+  });
+  $('close-supplier').addEventListener('click',() => $('supplier-dialog').close());
+  $('supplier-form').addEventListener('input',() => formError('supplier-error',''));
+  $('supplier-form').addEventListener('submit',event => {
+    event.preventDefault(); formError('supplier-error','');
+    try {
+      const previous = $('supplier-original').value, name = C.normalizeSupplier($('supplier-name').value);
+      const wasSelected = activeSupplier === C.supplierToken(previous), next = C.renameSupplier(state,previous,name);
+      commit(next);
+      if (wasSelected) { activeSupplier = C.supplierToken(name); render(); }
+      if ($('supplier').value === previous) $('supplier').value = name;
+      $('supplier-dialog').close(); toast('매입처 이름을 변경했습니다.');
+    } catch(error) { formError('supplier-error',error.message); }
+  });
+
   window.addEventListener('storage',event => {
     if (event.key !== KEY && event.key !== null) return;
     blocked = true;
     alertStorage('다른 창에서 자료가 변경되었습니다. 입력 충돌을 막기 위해 저장을 멈췄습니다. 이 화면을 새로고침한 뒤 계속해주세요.');
     if ($('movement-dialog').open) $('movement-dialog').close();
+    if ($('supplier-dialog').open) $('supplier-dialog').close();
   });
   load(); render(); preview();
 })();

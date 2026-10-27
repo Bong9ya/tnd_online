@@ -21,3 +21,23 @@ table{font-size:12px}thead{font-size:11px}.product-table{min-width:610px}.produc
 .profit-number,.stock-quantity{font-size:14px}.stock-badge{font-size:10px}.movement-btn{min-height:32px;font-size:11px}
 .table-foot{font-size:10px}.search input,.filters select{font-size:12px}.text-button{font-size:11px}.empty-state p{font-size:12px}
 @media(max-width:760px){.nav-item{min-height:40px}.btn{min-height:42px}.heading-actions .btn{min-height:40px}.icon-button{width:36px;height:36px}.movement-btn{min-height:36px}.page-footer p{font-size:10px}.stat-label{font-size:12px}.stat-note{font-size:10px}.panel-title-row p{font-size:11px}.panel-title-row h2{font-size:16px}.text-button{font-size:10px}}
+
+/* Supplier grouping and selection share the existing workspace palette. */
+.scope-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:-7px 0 12px;min-height:25px}
+.scope-label{display:inline-flex;align-items:center;gap:7px;color:#817493;font-size:11px;min-width:0;overflow-wrap:anywhere}
+.scope-label:before{content:"";width:6px;height:6px;background:#a391d3;border-radius:50%;flex-shrink:0}
+.scope-bar button{background:transparent;color:var(--purple);font-size:11px;padding:4px 0;flex-shrink:0}
+.filters{flex-wrap:wrap}.filters .search{flex-basis:100%}.filters select{max-width:none;height:36px;flex:1;min-width:0}
+.filters #supplier-filter{flex:1.8}.product-supplier{display:block;font-size:10px;color:#8c77b2;margin-top:4px;max-width:175px;white-space:normal;overflow-wrap:anywhere}
+.field select{display:block;width:100%;margin-top:6px;min-height:40px;background:#fff;border:1px solid #e5e7f0;border-radius:6px;padding:8px 10px;color:#555d74;font-size:12px}
+.supplier-auto-label{color:#998daf;font-size:11px;white-space:nowrap}.supplier-guide{display:flex;gap:12px;align-items:center;margin:0 23px 20px;background:#faf8ff;border:1px solid #eee8fa;border-radius:10px;padding:16px}
+.supplier-guide .stat-icon{width:38px;height:38px;flex-shrink:0}.supplier-guide p{font-size:12px;line-height:1.85;color:#9a8cad}.supplier-guide strong{font-weight:600;color:#7a658f}
+.supplier-table{min-width:760px}.supplier-table td{padding-top:23px;padding-bottom:23px}.supplier-identity{display:flex;align-items:center;gap:12px;max-width:290px}
+.supplier-monogram{display:flex;justify-content:center;align-items:center;width:37px;height:40px;background:#eee9fa;border-radius:9px;color:#9683be;font-weight:650;font-size:13px;flex-shrink:0}
+.supplier-monogram.muted{background:#f1f2f5;color:#a5a9b8}.supplier-name{font-size:13px;font-weight:600;white-space:normal;overflow-wrap:anywhere;max-width:220px}.supplier-subtitle{display:block;font-size:10px;font-weight:400;color:#a0a5b5;margin-top:4px}
+.supplier-value{font-size:14px;font-weight:600;color:#6e607e}.supplier-low{color:#bd8b32}.supplier-view-button{background:var(--purple-soft);color:var(--purple);border-radius:6px;padding:7px 10px;font-size:11px;white-space:nowrap}
+.history-supplier-filter{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:15px 23px;border-bottom:1px solid var(--line);color:#a0a3b1;font-size:11px}
+.history-supplier-filter select{border:1px solid #e5e7f0;border-radius:6px;min-height:36px;max-width:240px;min-width:140px;padding:0 10px;background:#fff;color:#81738f;font-size:12px}
+#supplier-form>.full{margin-top:20px}.supplier-panel .table-actions{justify-content:flex-start}
+@media(max-width:1050px){.sidebar{padding-left:11px;padding-right:11px}.nav-item{gap:8px;padding-left:11px;padding-right:11px}}
+@media(max-width:760px){.sidebar{display:flex;flex-wrap:wrap;padding:15px 18px 0}.brand{padding:0 0 12px}.sidebar nav{width:100%;display:flex;justify-content:space-between;border-top:1px solid #f1eff6;padding-top:8px;gap:4px}.nav-item{justify-content:center;flex:1;padding:9px 7px;margin-bottom:8px;min-height:42px}.nav-item svg{width:14px;height:14px}.nav-count{margin-left:0}.supplier-auto-label{display:none}.supplier-guide{margin:0 16px 16px;padding:13px;align-items:flex-start}.supplier-guide p{font-size:11px}.supplier-guide .stat-icon{width:29px;height:29px}.scope-bar{align-items:flex-start}.scope-label{font-size:11px}.scope-bar button{font-size:10px}.history-supplier-filter{padding:13px 16px;align-items:flex-start;flex-direction:column;gap:7px}.history-supplier-filter select{width:100%;max-width:none}.filters select{min-height:40px}.supplier-panel .table-foot{align-items:flex-start;gap:8px;flex-direction:column}.supplier-view-button{min-height:36px}}

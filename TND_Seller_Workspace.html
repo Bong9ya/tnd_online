@@ -25,6 +25,26 @@ table{font-size:12px}thead{font-size:11px}.product-table{min-width:610px}.produc
 .table-foot{font-size:10px}.search input,.filters select{font-size:12px}.text-button{font-size:11px}.empty-state p{font-size:12px}
 @media(max-width:760px){.nav-item{min-height:40px}.btn{min-height:42px}.heading-actions .btn{min-height:40px}.icon-button{width:36px;height:36px}.movement-btn{min-height:36px}.page-footer p{font-size:10px}.stat-label{font-size:12px}.stat-note{font-size:10px}.panel-title-row p{font-size:11px}.panel-title-row h2{font-size:16px}.text-button{font-size:10px}}
 
+/* Supplier grouping and selection share the existing workspace palette. */
+.scope-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:-7px 0 12px;min-height:25px}
+.scope-label{display:inline-flex;align-items:center;gap:7px;color:#817493;font-size:11px;min-width:0;overflow-wrap:anywhere}
+.scope-label:before{content:"";width:6px;height:6px;background:#a391d3;border-radius:50%;flex-shrink:0}
+.scope-bar button{background:transparent;color:var(--purple);font-size:11px;padding:4px 0;flex-shrink:0}
+.filters{flex-wrap:wrap}.filters .search{flex-basis:100%}.filters select{max-width:none;height:36px;flex:1;min-width:0}
+.filters #supplier-filter{flex:1.8}.product-supplier{display:block;font-size:10px;color:#8c77b2;margin-top:4px;max-width:175px;white-space:normal;overflow-wrap:anywhere}
+.field select{display:block;width:100%;margin-top:6px;min-height:40px;background:#fff;border:1px solid #e5e7f0;border-radius:6px;padding:8px 10px;color:#555d74;font-size:12px}
+.supplier-auto-label{color:#998daf;font-size:11px;white-space:nowrap}.supplier-guide{display:flex;gap:12px;align-items:center;margin:0 23px 20px;background:#faf8ff;border:1px solid #eee8fa;border-radius:10px;padding:16px}
+.supplier-guide .stat-icon{width:38px;height:38px;flex-shrink:0}.supplier-guide p{font-size:12px;line-height:1.85;color:#9a8cad}.supplier-guide strong{font-weight:600;color:#7a658f}
+.supplier-table{min-width:760px}.supplier-table td{padding-top:23px;padding-bottom:23px}.supplier-identity{display:flex;align-items:center;gap:12px;max-width:290px}
+.supplier-monogram{display:flex;justify-content:center;align-items:center;width:37px;height:40px;background:#eee9fa;border-radius:9px;color:#9683be;font-weight:650;font-size:13px;flex-shrink:0}
+.supplier-monogram.muted{background:#f1f2f5;color:#a5a9b8}.supplier-name{font-size:13px;font-weight:600;white-space:normal;overflow-wrap:anywhere;max-width:220px}.supplier-subtitle{display:block;font-size:10px;font-weight:400;color:#a0a5b5;margin-top:4px}
+.supplier-value{font-size:14px;font-weight:600;color:#6e607e}.supplier-low{color:#bd8b32}.supplier-view-button{background:var(--purple-soft);color:var(--purple);border-radius:6px;padding:7px 10px;font-size:11px;white-space:nowrap}
+.history-supplier-filter{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:15px 23px;border-bottom:1px solid var(--line);color:#a0a3b1;font-size:11px}
+.history-supplier-filter select{border:1px solid #e5e7f0;border-radius:6px;min-height:36px;max-width:240px;min-width:140px;padding:0 10px;background:#fff;color:#81738f;font-size:12px}
+#supplier-form>.full{margin-top:20px}.supplier-panel .table-actions{justify-content:flex-start}
+@media(max-width:1050px){.sidebar{padding-left:11px;padding-right:11px}.nav-item{gap:8px;padding-left:11px;padding-right:11px}}
+@media(max-width:760px){.sidebar{display:flex;flex-wrap:wrap;padding:15px 18px 0}.brand{padding:0 0 12px}.sidebar nav{width:100%;display:flex;justify-content:space-between;border-top:1px solid #f1eff6;padding-top:8px;gap:4px}.nav-item{justify-content:center;flex:1;padding:9px 7px;margin-bottom:8px;min-height:42px}.nav-item svg{width:14px;height:14px}.nav-count{margin-left:0}.supplier-auto-label{display:none}.supplier-guide{margin:0 16px 16px;padding:13px;align-items:flex-start}.supplier-guide p{font-size:11px}.supplier-guide .stat-icon{width:29px;height:29px}.scope-bar{align-items:flex-start}.scope-label{font-size:11px}.scope-bar button{font-size:10px}.history-supplier-filter{padding:13px 16px;align-items:flex-start;flex-direction:column;gap:7px}.history-supplier-filter select{width:100%;max-width:none}.filters select{min-height:40px}.supplier-panel .table-foot{align-items:flex-start;gap:8px;flex-direction:column}.supplier-view-button{min-height:36px}}
+
 </style></head>
 <body>
 <svg class="sprite" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs><symbol id="i-box" viewBox="0 0 24 24"><path d="m12 3 9 5-9 5-9-5 9-5Zm9 5v9l-9 5-9-5V8m9 5v9M7.5 5.5l9 5"/></symbol><symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/></symbol><symbol id="i-history" viewBox="0 0 24 24"><path d="M3 10a9 9 0 1 1 2 8M3 4v6h6m3-3v5l3 2"/></symbol><symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol><symbol id="i-search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></symbol><symbol id="i-down" viewBox="0 0 24 24"><path d="M12 3v12m-5-5 5 5 5-5M4 16v5h16v-5"/></symbol><symbol id="i-up" viewBox="0 0 24 24"><path d="M12 16V4m-5 5 5-5 5 5M4 16v5h16v-5"/></symbol><symbol id="i-arrow" viewBox="0 0 24 24"><path d="M4 16 10 10l4 4 6-8m-6 0h6v6"/></symbol><symbol id="i-warning" viewBox="0 0 24 24"><path d="m10.3 4.4-8 14A1.7 1.7 0 0 0 3.8 21h16.4a1.7 1.7 0 0 0 1.5-2.6l-8-14a1.6 1.6 0 0 0-2.8 0ZM12 9v5m0 3h.01"/></symbol><symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol><symbol id="i-edit" viewBox="0 0 24 24"><path d="m16 3 5 5-12 12-6 1 1-6L16 3Zm-2 2 5 5"/></symbol><symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M6 18 18 6"/></symbol></defs></svg>
@@ -32,7 +52,7 @@ table{font-size:12px}thead{font-size:11px}.product-table{min-width:610px}.produc
 <aside class="sidebar">
 <a class="brand" href="#main" aria-label="TND 홈"><span class="brand-mark">t<span>n</span>d<span class="brand-dot">.</span></span><span class="brand-sub">SELLER WORKSPACE</span></a>
 <div class="workspace-label">내 비즈니스</div>
-<nav aria-label="주 메뉴"><button class="nav-item active" data-view="products" aria-current="page"><svg aria-hidden="true"><use href="#i-grid"/></svg>상품 관리<span id="nav-count" class="nav-count">0</span></button><button class="nav-item" data-view="history"><svg aria-hidden="true"><use href="#i-history"/></svg>입출고 이력</button></nav>
+<nav aria-label="주 메뉴"><button class="nav-item active" data-view="products" aria-current="page"><svg aria-hidden="true"><use href="#i-grid"/></svg>상품 관리<span id="nav-count" class="nav-count">0</span></button><button class="nav-item" data-view="history"><svg aria-hidden="true"><use href="#i-history"/></svg>입출고 이력</button><button class="nav-item" data-view="suppliers"><svg aria-hidden="true"><use href="#i-box"/></svg>매입처 관리</button></nav>
 <div class="sidebar-bottom"><div class="local-dot"></div><strong>브라우저에 자동 저장</strong><p>사용 중인 브라우저에 보관됩니다.<br>기기를 옮길 때는 백업을 이용하세요.</p><button id="sample-btn" class="sample-btn">예시 데이터로 둘러보기 <span>↗</span></button></div>
 </aside>
 <div class="app-shell">
@@ -40,12 +60,13 @@ table{font-size:12px}thead{font-size:11px}.product-table{min-width:610px}.produc
 <main id="main" tabindex="-1">
 <div id="storage-error" class="alert" role="alert" hidden></div>
 <section class="page-heading"><div><div class="eyebrow">YOUR BUSINESS, AT A GLANCE</div><h1 id="page-title">상품 수익 · 재고</h1><p id="page-description">원가부터 재고까지, 판매에 필요한 숫자를 한눈에.</p></div><div class="heading-actions"><button id="restore-btn" class="btn btn-quiet"><svg aria-hidden="true"><use href="#i-up"/></svg>복원</button><button id="backup-btn" class="btn btn-outline"><svg aria-hidden="true"><use href="#i-down"/></svg>백업</button><button id="new-product-btn" class="btn btn-primary"><svg aria-hidden="true"><use href="#i-plus"/></svg>상품 등록</button></div></section>
+<div class="scope-bar"><span id="scope-label" class="scope-label">전체 매입처 기준</span><button id="clear-supplier" hidden>전체 매입처로 보기</button></div>
 <section class="stats" aria-label="재고 요약">
 <article class="stat-card"><div class="stat-label">등록 상품<span class="stat-icon purple"><svg aria-hidden="true"><use href="#i-box"/></svg></span></div><div class="stat-value" id="stat-products">0<span>개</span></div><div class="stat-note">관리 중인 전체 상품</div></article><article class="stat-card"><div class="stat-label">현재 재고<span class="stat-icon blue"><svg aria-hidden="true"><use href="#i-grid"/></svg></span></div><div class="stat-value" id="stat-stock">0<span>개</span></div><div class="stat-note">입고 − 출고 누적 수량</div></article><article class="stat-card"><div class="stat-label">재고 원가 총액<span class="stat-icon green">₩</span></div><div class="stat-value" id="stat-value">0<span>원</span></div><div class="stat-note">상품 원가 × 현재 재고</div></article><article class="stat-card"><div class="stat-label">재고 확인 필요<span class="stat-icon amber"><svg aria-hidden="true"><use href="#i-warning"/></svg></span></div><div class="stat-value" id="stat-low">0<span>개 상품</span></div><div class="stat-note">품절 또는 알림 기준 이하</div></article>
 </section>
 <section id="products-view" class="workspace-grid">
 <div class="product-panel panel"><div class="panel-title-row"><div><h2>상품 목록 <span id="product-count" class="count-pill">0</span></h2><p>상품별 수익과 재고 상태를 확인하세요.</p></div><button id="csv-btn" class="text-button"><svg aria-hidden="true"><use href="#i-down"/></svg>CSV 내보내기</button></div>
-<div class="filters"><label class="search"><svg aria-hidden="true"><use href="#i-search"/></svg><input id="search" type="search" aria-label="상품명 또는 상품 코드 검색" placeholder="상품명 또는 상품 코드 검색"></label><label class="sr-only" for="stock-filter">재고 상태</label><select id="stock-filter"><option value="all">전체 재고</option><option value="normal">정상 재고</option><option value="low">재고 부족</option><option value="out">품절</option></select></div>
+<div class="filters"><label class="search"><svg aria-hidden="true"><use href="#i-search"/></svg><input id="search" type="search" aria-label="상품명 · 코드 · 매입처 검색" placeholder="상품명 · 코드 · 매입처 검색"></label><label class="sr-only" for="supplier-filter">매입처 선택</label><select id="supplier-filter"><option value="all">전체 매입처</option></select><label class="sr-only" for="stock-filter">재고 상태</label><select id="stock-filter"><option value="all">전체 재고</option><option value="normal">정상 재고</option><option value="low">재고 부족</option><option value="out">품절</option></select></div>
 <div id="product-empty" class="empty-state"><div class="empty-illustration"><svg aria-hidden="true"><use href="#i-box"/></svg><span>+</span></div><h3>첫 상품을 등록해보세요</h3><p>원가와 판매가를 입력하면<br>배송비·수수료를 반영한 이익이 계산됩니다.</p><button id="empty-add-btn" class="btn btn-primary"><svg aria-hidden="true"><use href="#i-plus"/></svg>상품 등록하기</button></div>
 <div id="no-results" class="empty-state small" hidden><h3>검색 결과가 없습니다</h3><p>검색어나 재고 상태를 바꿔보세요.</p></div>
 <div id="product-table-wrap" class="table-scroll" hidden><table class="product-table"><caption class="sr-only">상품별 원가, 판매가, 예상 이익, 재고 목록</caption><thead><tr><th scope="col">상품</th><th scope="col" class="number">원가 / 판매가</th><th scope="col" class="number">건당 예상 이익</th><th scope="col" class="number">재고</th><th scope="col">관리</th></tr></thead><tbody id="product-rows"></tbody></table></div>
@@ -53,17 +74,33 @@ table{font-size:12px}thead{font-size:11px}.product-table{min-width:610px}.produc
 </div>
 <aside class="calculator panel" aria-label="상품 입력 및 예상 이익"><div class="calculator-heading"><span class="stat-icon purple"><svg aria-hidden="true"><use href="#i-arrow"/></svg></span><div><h2 id="editor-title">새 상품 등록</h2><p>숫자를 입력하면 수익이 바로 보여요.</p></div><button id="cancel-edit-btn" class="icon-button" aria-label="상품 수정 취소" hidden><svg aria-hidden="true"><use href="#i-close"/></svg></button></div>
 <form id="product-form" novalidate><input id="product-id" type="hidden">
-<div class="form-section"><div class="section-kicker"><span>01</span>상품 정보</div><label class="field" for="name">상품명 <span class="required">*</span><input id="name" name="name" maxlength="80" placeholder="예: 원목 안내판" required></label><label class="field" for="sku">상품 코드 <span class="optional">선택</span><input id="sku" name="sku" maxlength="40" placeholder="예: TND-001"></label></div>
+<div class="form-section"><div class="section-kicker"><span>01</span>상품 정보</div><label class="field" for="name">상품명 <span class="required">*</span><input id="name" name="name" maxlength="80" placeholder="예: 원목 안내판" required></label><label class="field" for="sku">상품 코드 <span class="optional">선택</span><input id="sku" name="sku" maxlength="40" placeholder="예: TND-001"></label><label class="field" for="supplier">매입처(공급사) <span class="optional">선택</span><input id="supplier" name="supplier" list="supplier-options" maxlength="80" placeholder="예: 티앤디물산" autocomplete="off"><datalist id="supplier-options"></datalist></label><p class="field-hint">같은 상품도 매입처가 다르면 따로 등록해 재고를 구분하세요.</p></div>
 <div class="form-section"><div class="section-kicker"><span>02</span>원가와 판매 비용</div><div class="field-grid"><label class="field" for="cost">상품 원가 <span class="required">*</span><span class="input-unit"><input id="cost" name="cost" type="number" min="0" max="1000000000" step="1"  placeholder="0" required><span>원</span></span></label><label class="field" for="salePrice">판매가 <span class="required">*</span><span class="input-unit"><input id="salePrice" name="salePrice" type="number" min="0" max="1000000000" step="1"  placeholder="0" required><span>원</span></span></label><label class="field" for="shippingCost">실제 택배비<span class="input-unit"><input id="shippingCost" name="shippingCost" type="number" min="0" max="1000000000" step="1" value="0" placeholder="0" ><span>원</span></span></label><label class="field" for="customerShipping">고객 배송비<span class="input-unit"><input id="customerShipping" name="customerShipping" type="number" min="0" max="1000000000" step="1" value="0" placeholder="0" ><span>원</span></span></label><label class="field" for="packingCost">포장비<span class="input-unit"><input id="packingCost" name="packingCost" type="number" min="0" max="1000000000" step="1" value="0" placeholder="0" ><span>원</span></span></label><label class="field" for="feeRate">판매 수수료율<span class="input-unit"><input id="feeRate" name="feeRate" type="number" min="0" max="100" step="0.01" value="0" placeholder="0" ><span>%</span></span></label></div><label class="field" for="fixedFee">추가 고정 수수료 <span class="optional">1건당</span><span class="input-unit"><input id="fixedFee" name="fixedFee" type="number" min="0" max="1000000000" step="1" value="0" placeholder="0" ><span>원</span></span></label><label class="checkbox-field"><input id="feeOnShipping" type="checkbox"><span>고객 배송비에도 판매 수수료 적용</span></label><p class="field-hint">고객 배송비는 구매자에게 받는 금액입니다.<br>무료배송이면 0원을 입력하세요.</p></div>
 <div class="form-section"><div class="section-kicker"><span>03</span>재고 설정</div><div class="field-grid"><div id="initial-stock-field"><label class="field" for="initialStock">최초 재고<span class="input-unit"><input id="initialStock" name="initialStock" type="number" min="0" max="1000000" step="1" value="0" placeholder="0" ><span>개</span></span></label></div><label class="field" for="lowStock">재고 알림 기준<span class="input-unit"><input id="lowStock" name="lowStock" type="number" min="0" max="1000000" step="1" value="5" placeholder="0" ><span>개</span></span></label></div><p id="stock-edit-hint" class="field-hint" hidden>재고 수량은 상품 목록의 ‘입출고’에서 변경하세요.</p></div>
 <div class="profit-preview"><div class="profit-top"><span>1건 판매 시 예상 이익</span><span id="preview-margin" class="margin-badge">—</span></div><div class="profit-value" id="preview-profit">0<span>원</span></div><dl class="profit-breakdown"><div><dt>판매가 + 고객 배송비</dt><dd id="preview-revenue">0원</dd></div><div><dt>상품 원가 + 택배비 + 포장비</dt><dd id="preview-base-cost">0원</dd></div><div><dt>판매 수수료 <span id="preview-rate">0%</span></dt><dd id="preview-fee">0원</dd></div></dl><p>수수료는 원 단위 반올림 · 부가세·광고비·반품비 제외</p></div>
 <p id="form-error" class="form-error" role="alert" hidden></p><button class="btn btn-primary save-product" id="save-product-btn" type="submit"><svg aria-hidden="true"><use href="#i-plus"/></svg><span>상품 등록</span></button>
 </form></aside>
 </section>
-<section id="history-view" class="panel history-panel" hidden><div class="panel-title-row"><div><h2>입출고 이력 <span id="history-count" class="count-pill">0</span></h2><p>최초 재고와 입고·출고 내역을 시간순으로 기록합니다.</p></div></div><div id="history-empty" class="empty-state"><div class="empty-illustration"><svg aria-hidden="true"><use href="#i-history"/></svg></div><h3>아직 입출고 기록이 없어요</h3><p>상품을 등록하고 최초 재고 또는 입출고를 입력하세요.</p></div><div id="history-table-wrap" class="table-scroll" hidden><table><caption class="sr-only">입출고 이력</caption><thead><tr><th scope="col">기록 일시</th><th scope="col">상품</th><th scope="col">구분</th><th scope="col" class="number">수량</th><th scope="col">메모</th></tr></thead><tbody id="history-rows"></tbody></table></div><button id="history-more" class="btn btn-outline history-more" hidden>이력 더 보기</button></section>
+
+<section id="suppliers-view" class="panel supplier-panel" hidden>
+  <div class="panel-title-row"><div><h2>매입처별 현황 <span id="supplier-count" class="count-pill">0</span></h2><p>상품에 지정한 매입처별로 재고와 원가 총액을 모아봅니다.</p></div><span class="supplier-auto-label">상품 정보와 함께 자동 반영</span></div>
+  <div class="supplier-guide"><span class="stat-icon purple"><svg aria-hidden="true"><use href="#i-box"/></svg></span><p><strong>거래처마다 다른 원가와 재고, 따로 관리하세요.</strong><br>상품 등록·수정에서 매입처를 지정하면 이곳에 자동으로 표시됩니다.</p></div>
+  <div id="suppliers-empty" class="empty-state"><div class="empty-illustration"><svg aria-hidden="true"><use href="#i-box"/></svg><span>+</span></div><h3>매입처를 지정한 상품을 등록해보세요</h3><p>매입처명은 직접 입력하거나<br>이미 사용 중인 이름을 선택할 수 있습니다.</p><button id="supplier-add-product-btn" class="btn btn-primary">매입처 상품 등록</button></div>
+  <div id="supplier-table-wrap" class="table-scroll" hidden><table class="supplier-table"><caption class="sr-only">매입처별 상품 수, 현재 재고, 재고 원가, 확인 필요 상품</caption><thead><tr><th scope="col">매입처(공급사)</th><th scope="col" class="number">상품 수</th><th scope="col" class="number">현재 재고</th><th scope="col" class="number">재고 원가 총액</th><th scope="col" class="number">확인 필요</th><th scope="col">관리</th></tr></thead><tbody id="supplier-rows"></tbody></table></div>
+  <div class="table-foot"><span id="supplier-summary-note">매입처 미지정 상품도 별도로 표시합니다.</span><span class="legend"><i></i>현재 원가·현재 재고 기준</span></div>
+</section>
+
+<section id="history-view" class="panel history-panel" hidden><div class="panel-title-row"><div><h2>입출고 이력 <span id="history-count" class="count-pill">0</span></h2><p>최초 재고와 입고·출고 내역을 시간순으로 기록합니다.</p></div></div><div class="history-supplier-filter"><label for="history-supplier-filter">매입처별 입출고</label><select id="history-supplier-filter"><option value="all">전체 매입처</option></select><span>상품의 현재 매입처 기준</span></div><div id="history-empty" class="empty-state"><div class="empty-illustration"><svg aria-hidden="true"><use href="#i-history"/></svg></div><h3>아직 입출고 기록이 없어요</h3><p>상품을 등록하고 최초 재고 또는 입출고를 입력하세요.</p></div><div id="history-table-wrap" class="table-scroll" hidden><table><caption class="sr-only">입출고 이력</caption><thead><tr><th scope="col">기록 일시</th><th scope="col">상품</th><th scope="col">구분</th><th scope="col" class="number">수량</th><th scope="col">메모</th></tr></thead><tbody id="history-rows"></tbody></table></div><button id="history-more" class="btn btn-outline history-more" hidden>이력 더 보기</button></section>
 <footer class="page-footer"><span>TND <span>SELLER WORKSPACE</span></span><p>예상 이익은 현재 입력값 기준입니다. 실제 정산 내역과 비교해 사용하세요.</p></footer>
 </main></div>
 <dialog id="movement-dialog" aria-labelledby="movement-title"><form id="movement-form" novalidate><div class="dialog-heading"><div><div class="eyebrow">STOCK MOVEMENT</div><h2 id="movement-title">입출고 등록</h2></div><button type="button" id="close-movement" class="icon-button" aria-label="입출고 창 닫기"><svg aria-hidden="true"><use href="#i-close"/></svg></button></div><input id="movement-product-id" type="hidden"><div class="movement-product"><strong id="movement-product-name"></strong><span>현재 재고 <b id="movement-current"></b>개</span></div><div class="segmented" role="group" aria-label="입출고 구분"><label><input type="radio" name="movement-type" value="in" checked><span>＋ 입고</span></label><label><input type="radio" name="movement-type" value="out"><span>− 출고</span></label></div><label class="field" for="movement-quantity">수량<span class="input-unit"><input id="movement-quantity" type="number" min="1" max="1000000" step="1" value="1" required><span>개</span></span></label><label class="field" for="movement-note">메모 <span class="optional">선택</span><input id="movement-note" maxlength="200" placeholder="예: 신규 사입 / 주문 발송"></label><div class="movement-after">반영 후 재고 <strong id="movement-after"></strong></div><p id="movement-error" class="form-error" role="alert" hidden></p><button class="btn btn-primary full" type="submit">입출고 기록 저장</button><p class="dialog-note">출고는 재고 수량만 변경하며, 매출을 기록하지 않습니다.</p></form></dialog>
+
+<dialog id="supplier-dialog" aria-labelledby="supplier-dialog-title"><form id="supplier-form" novalidate>
+  <div class="dialog-heading"><div><div class="eyebrow">SUPPLIER DETAILS</div><h2 id="supplier-dialog-title">매입처 이름 변경</h2></div><button id="close-supplier" type="button" class="icon-button" aria-label="매입처 이름 변경 창 닫기"><svg aria-hidden="true"><use href="#i-close"/></svg></button></div>
+  <input id="supplier-original" type="hidden"><label class="field" for="supplier-name">매입처(공급사) 이름<input id="supplier-name" maxlength="80" required placeholder="예: 티앤디물산"></label>
+  <p id="supplier-rename-note" class="field-hint"></p><p id="supplier-error" class="form-error" role="alert" hidden></p><button class="btn btn-primary full" type="submit">매입처 이름 저장</button>
+</form></dialog>
+
 <dialog id="confirm-dialog" aria-labelledby="confirm-title"><div class="dialog-heading"><h2 id="confirm-title"></h2></div><p id="confirm-message" class="confirm-message"></p><div class="confirm-actions"><button id="confirm-cancel" class="btn btn-outline">취소</button><button id="confirm-ok" class="btn btn-primary">확인</button></div></dialog>
 <input id="restore-file" type="file" accept=".json,application/json" hidden><div id="toast" class="toast" role="status" aria-live="polite" hidden><svg aria-hidden="true"><use href="#i-check"/></svg><span></span></div>
 <noscript><p class="alert">이 계산기를 사용하려면 브라우저에서 JavaScript를 허용해주세요.</p></noscript>
@@ -83,7 +120,7 @@ function validateProduct(p){
   if(typeof p.feeOnShipping!=='boolean')throw new Error('배송비 수수료 설정을 확인해주세요.');
   const feeRate=number(p.feeRate,'판매 수수료율',100,false);
   if(Math.abs(feeRate*100-Math.round(feeRate*100))>0.000001)throw new Error('수수료율은 소수점 둘째 자리까지 입력해주세요.');
-  return {name:label(p.name,'상품명',80,true),sku:label(p.sku??'','상품 코드',40),cost:number(p.cost,'상품 원가',MAX_MONEY),salePrice:number(p.salePrice,'판매가',MAX_MONEY),customerShipping:number(p.customerShipping,'고객 배송비',MAX_MONEY),shippingCost:number(p.shippingCost,'실제 택배비',MAX_MONEY),packingCost:number(p.packingCost,'포장비',MAX_MONEY),feeRate,fixedFee:number(p.fixedFee,'추가 고정 수수료',MAX_MONEY),feeOnShipping:p.feeOnShipping,lowStock:number(p.lowStock,'재고 알림 기준',MAX_STOCK)};
+  return {name:label(p.name,'상품명',80,true),sku:label(p.sku??'','상품 코드',40),supplier:normalizeSupplier(p.supplier),cost:number(p.cost,'상품 원가',MAX_MONEY),salePrice:number(p.salePrice,'판매가',MAX_MONEY),customerShipping:number(p.customerShipping,'고객 배송비',MAX_MONEY),shippingCost:number(p.shippingCost,'실제 택배비',MAX_MONEY),packingCost:number(p.packingCost,'포장비',MAX_MONEY),feeRate,fixedFee:number(p.fixedFee,'추가 고정 수수료',MAX_MONEY),feeOnShipping:p.feeOnShipping,lowStock:number(p.lowStock,'재고 알림 기준',MAX_STOCK)};
 }
 function calculate(p){
   const revenue=p.salePrice+p.customerShipping,feeBase=p.salePrice+(p.feeOnShipping?p.customerShipping:0);
@@ -93,7 +130,7 @@ function calculate(p){
 function emptyState(){return {version:1,products:[],movements:[]};}
 function stockFor(state,id){return state.movements.reduce((n,m)=>m.productId===id?n+(m.type==='in'?m.quantity:-m.quantity):n,0);}
 function stockStatus(qty,threshold){return qty===0?'out':qty<=threshold?'low':'normal';}
-function uniqueSku(state,sku,exceptId){return !sku||!state.products.some(p=>p.id!==exceptId&&p.sku.toLocaleLowerCase()===sku.toLocaleLowerCase());}
+function uniqueSku(state,sku,exceptId,supplier=''){return !sku||!state.products.some(p=>p.id!==exceptId&&(p.supplier||'')===supplier&&p.sku.toLocaleLowerCase()===sku.toLocaleLowerCase());}
 function identifier(v){return label(v,'식별자',100,true);}
 function timestamp(v){if(typeof v!=='string'||!Number.isFinite(Date.parse(v)))throw new Error('기록 날짜가 올바르지 않습니다.');return new Date(v).toISOString();}
 function validateMovement(m,ids){
@@ -117,7 +154,7 @@ function validateState(input){
   if(input.products.length>5000||input.movements.length>100000)throw new Error('백업 파일의 상품 또는 입출고 기록이 너무 많습니다.');
   const ids=new Set(),skus=new Set();
   const products=input.products.map(item=>{
-    const id=identifier(item.id),p=validateProduct(item),key=p.sku.toLocaleLowerCase();
+    const id=identifier(item.id),p=validateProduct(item),key=p.sku?JSON.stringify([p.supplier,p.sku.toLocaleLowerCase()]):'';
     if(ids.has(id)||(key&&skus.has(key)))throw new Error('중복된 상품 또는 상품 코드가 있습니다.');
     ids.add(id);if(key)skus.add(key);return {id,...p,createdAt:timestamp(item.createdAt)};
   });
@@ -129,13 +166,37 @@ function validateState(input){
     totals.set(m.productId,stock);return m;
   });return {version:1,products,movements};
 }
+
+function normalizeSupplier(value){return label(value??'','매입처(공급사)',80).replace(/\s+/g,' ');}
+function supplierToken(name){return name?'supplier:'+name:'unassigned';}
+function filterBySupplier(products,token='all'){return token==='all'?products.slice():products.filter(p=>supplierToken(p.supplier||'')===token);}
+function supplierSummaries(state){
+  const stocks=new Map(state.products.map(p=>[p.id,0]));
+  state.movements.forEach(m=>stocks.set(m.productId,stocks.get(m.productId)+(m.type==='in'?m.quantity:-m.quantity)));
+  const groups=new Map();
+  state.products.forEach(p=>{
+    const name=p.supplier||'',key=supplierToken(name),qty=stocks.get(p.id)||0;
+    if(!groups.has(key))groups.set(key,{key,name,productCount:0,stock:0,stockValue:0n,lowStockCount:0});
+    const group=groups.get(key);group.productCount++;group.stock+=qty;group.stockValue+=BigInt(p.cost)*BigInt(qty);
+    if(qty<=p.lowStock)group.lowStockCount++;
+  });
+  return [...groups.values()].sort((a,b)=>!a.name?1:!b.name?-1:a.name.localeCompare(b.name,'ko-KR'));
+}
+function renameSupplier(state,oldName,newName){
+  const previous=normalizeSupplier(oldName),next=normalizeSupplier(newName);
+  if(!previous||!next)throw new Error('매입처 이름을 입력해주세요.');
+  if(!state.products.some(p=>p.supplier===previous))throw new Error('변경할 매입처를 찾을 수 없습니다.');
+  if(next!==previous&&state.products.some(p=>p.supplier===next))throw new Error('이미 존재하는 매입처 이름입니다. 다른 이름을 입력해주세요.');
+  return {...state,products:state.products.map(p=>p.supplier===previous?{...p,supplier:next}:p)};
+}
+
 function csvCell(value){let text=String(value??'');if(typeof value==='string'&&/^[\s]*[=+@-]/.test(text))text="'"+text;return '"'+text.replace(/"/g,'""')+'"';}
-function toCsv(state){
-  const rows=[['상품명','상품코드','상품원가','판매가','고객배송비','실제택배비','포장비','수수료율(%)','고정수수료','배송비수수료포함','예상수수료','예상이익','이익률(%)','현재재고','재고알림기준']];
-  state.products.forEach(p=>{const c=calculate(p);rows.push([p.name,p.sku,p.cost,p.salePrice,p.customerShipping,p.shippingCost,p.packingCost,p.feeRate,p.fixedFee,p.feeOnShipping?'예':'아니오',c.fee,c.profit,c.margin===null?'':Math.round(c.margin*10)/10,stockFor(state,p.id),p.lowStock]);});
+function toCsv(state,token='all'){
+  const rows=[['상품명','상품코드','매입처(공급사)','상품원가','판매가','고객배송비','실제택배비','포장비','수수료율(%)','고정수수료','배송비수수료포함','예상수수료','예상이익','이익률(%)','현재재고','재고알림기준']];
+  filterBySupplier(state.products,token).forEach(p=>{const c=calculate(p);rows.push([p.name,p.sku,p.supplier||'',p.cost,p.salePrice,p.customerShipping,p.shippingCost,p.packingCost,p.feeRate,p.fixedFee,p.feeOnShipping?'예':'아니오',c.fee,c.profit,c.margin===null?'':Math.round(c.margin*10)/10,stockFor(state,p.id),p.lowStock]);});
   return '\uFEFF'+rows.map(row=>row.map(csvCell).join(',')).join('\r\n');
 }
-return Object.freeze({MAX_STOCK,number,validateProduct,calculate,emptyState,stockFor,stockStatus,uniqueSku,recordMovement,validateState,toCsv});
+return Object.freeze({MAX_STOCK,number,validateProduct,calculate,emptyState,stockFor,stockStatus,uniqueSku,recordMovement,validateState,toCsv,normalizeSupplier,supplierToken,filterBySupplier,supplierSummaries,renameSupplier});
 });
 
 </script>
@@ -145,14 +206,14 @@ return Object.freeze({MAX_STOCK,number,validateProduct,calculate,emptyState,stoc
   'use strict';
   const C = window.TndCore, $ = id => document.getElementById(id);
   const KEY = 'tnd-online-workspace-v1';
-  const fields = ['name','sku','cost','salePrice','customerShipping','shippingCost','packingCost','feeRate','fixedFee','feeOnShipping','lowStock'];
+  const fields = ['name','sku','supplier','cost','salePrice','customerShipping','shippingCost','packingCost','feeRate','fixedFee','feeOnShipping','lowStock'];
   const fmt = n => typeof n === 'bigint' ? n.toLocaleString('ko-KR') : Number(n).toLocaleString('ko-KR');
   const won = n => fmt(n) + '원';
   const esc = text => String(text ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const icon = n => '<svg aria-hidden="true"><use href="#i-' + n + '"/></svg>';
   const uuid = () => window.crypto?.randomUUID ? window.crypto.randomUUID() : Date.now().toString(36) + '-' + Math.random().toString(36).slice(2);
   const now = () => new Date().toISOString();
-  let state = C.emptyState(), lastRaw = null, blocked = false, historyLimit = 100, toastTimer;
+  let state = C.emptyState(), lastRaw = null, blocked = false, historyLimit = 100, toastTimer, activeSupplier = 'all', activeView = 'products';
   function alertStorage(message) { $('storage-error').textContent = message; $('storage-error').hidden = false; $('save-status').textContent = '저장 상태 확인 필요'; }
   function load() {
     try { lastRaw = localStorage.getItem(KEY); if (lastRaw !== null) state = C.validateState(JSON.parse(lastRaw)); $('save-status').innerHTML = '<span></span>' + (lastRaw ? '저장된 자료 불러옴' : '브라우저 자동 저장'); }
@@ -178,7 +239,7 @@ return Object.freeze({MAX_STOCK,number,validateProduct,calculate,emptyState,stoc
   function toast(message) { clearTimeout(toastTimer); $('toast').querySelector('span').textContent = message; $('toast').hidden = false; toastTimer = setTimeout(() => { $('toast').hidden = true; }, 3500); }
   function formError(id, message) { $(id).textContent = message; $(id).hidden = !message; }
   function rawDraft(preview = false) {
-    return Object.fromEntries(fields.map(key => [key, key === 'feeOnShipping' ? $(key).checked : preview && $(key).value === '' && key !== 'sku' ? (key === 'name' ? '미리보기' : 0) : $(key).value]));
+    return Object.fromEntries(fields.map(key => [key, key === 'feeOnShipping' ? $(key).checked : preview && $(key).value === '' && !['sku','supplier'].includes(key) ? (key === 'name' ? '미리보기' : 0) : $(key).value]));
   }
   function preview() {
     try {
@@ -198,6 +259,7 @@ return Object.freeze({MAX_STOCK,number,validateProduct,calculate,emptyState,stoc
   }
   function resetEditor(focus = false) {
     $('product-form').reset(); $('product-id').value = '';
+    $('supplier').value = activeSupplier.startsWith('supplier:') ? supplierLabel() : '';
     $('editor-title').textContent = '새 상품 등록';
     $('save-product-btn').innerHTML = icon('plus') + '<span>상품 등록</span>';
     $('cancel-edit-btn').hidden = true; $('initial-stock-field').hidden = false; $('stock-edit-hint').hidden = true;
@@ -218,45 +280,92 @@ return Object.freeze({MAX_STOCK,number,validateProduct,calculate,emptyState,stoc
     $('cancel-edit-btn').hidden = false; $('initial-stock-field').hidden = true; $('stock-edit-hint').hidden = false;
     preview(); focusEditor();
   }
+  function supplierLabel(token = activeSupplier) {
+    if (token === 'all') return '전체 매입처';
+    if (token === 'unassigned') return '매입처 미지정';
+    return token.slice('supplier:'.length);
+  }
+  function renderSupplierOptions(groups) {
+    if (activeSupplier !== 'all' && !groups.some(group => group.key === activeSupplier)) activeSupplier = 'all';
+    const options = '<option value="all">전체 매입처</option>' + groups.map(group => '<option value="' + esc(group.key) + '">' + esc(group.name || '매입처 미지정') + ' (' + fmt(group.productCount) + ')</option>').join('');
+    ['supplier-filter','history-supplier-filter'].forEach(id => { $(id).innerHTML = options; $(id).value = activeSupplier; });
+    $('supplier-options').innerHTML = groups.filter(group => group.name).map(group => '<option value="' + esc(group.name) + '"></option>').join('');
+  }
+  function renderSuppliers(groups) {
+    $('supplier-count').textContent = fmt(groups.length);
+    $('suppliers-empty').hidden = groups.length > 0;
+    $('supplier-table-wrap').hidden = groups.length === 0;
+    $('supplier-rows').innerHTML = groups.map(group => {
+      const name = group.name || '매입처 미지정';
+      return '<tr><td><div class="supplier-identity"><span class="supplier-monogram' + (!group.name ? ' muted' : '') + '">' + esc(group.name ? Array.from(group.name).slice(0,2).join('') : '—') + '</span><div class="supplier-name">' + esc(name) + '<span class="supplier-subtitle">' + (group.name ? '매입처별 상품 · 재고' : '상품 수정에서 매입처를 지정하세요') + '</span></div></div></td>' +
+        '<td class="number">' + fmt(group.productCount) + '개</td><td class="number"><strong>' + fmt(group.stock) + '</strong>개</td><td class="number supplier-value">' + won(group.stockValue) + '</td>' +
+        '<td class="number' + (group.lowStockCount ? ' supplier-low' : '') + '">' + fmt(group.lowStockCount) + '개 상품</td><td><div class="table-actions"><button class="supplier-view-button" data-supplier-action="view" data-supplier="' + esc(group.key) + '" aria-label="' + esc(name) + ' 상품 보기">상품 보기</button>' +
+        (group.name ? '<button class="icon-button" data-supplier-action="rename" data-supplier="' + esc(group.key) + '" aria-label="' + esc(name) + ' 이름 변경">' + icon('edit') + '</button>' : '') + '</div></td></tr>';
+    }).join('');
+    const named = groups.filter(group => group.name).length;
+    $('supplier-summary-note').textContent = '매입처 ' + fmt(named) + '곳' + (groups.some(group => !group.name) ? ' · 미지정 상품 별도 표시' : '');
+  }
   function render() {
     const stocks = new Map(state.products.map(p => [p.id, 0]));
     state.movements.forEach(m => stocks.set(m.productId, stocks.get(m.productId) + (m.type === 'in' ? m.quantity : -m.quantity)));
-    const productCount = state.products.length;
-    const stock = state.products.reduce((n,p) => n + stocks.get(p.id), 0);
-    const value = state.products.reduce((n,p) => n + BigInt(p.cost) * BigInt(stocks.get(p.id)), 0n);
-    const low = state.products.filter(p => stocks.get(p.id) <= p.lowStock).length;
-    const stats = {products:[productCount,'개'], stock:[stock,'개'], value:[value,'원'], low:[low,'개 상품']};
+    const groups = C.supplierSummaries(state);
+    renderSupplierOptions(groups);
+    const scoped = C.filterBySupplier(state.products,activeSupplier);
+    const summaryProducts = activeView === 'suppliers' ? state.products : scoped;
+    const stock = summaryProducts.reduce((n,p) => n + stocks.get(p.id), 0);
+    const value = summaryProducts.reduce((n,p) => n + BigInt(p.cost) * BigInt(stocks.get(p.id)), 0n);
+    const low = summaryProducts.filter(p => stocks.get(p.id) <= p.lowStock).length;
+    const stats = {products:[summaryProducts.length,'개'], stock:[stock,'개'], value:[value,'원'], low:[low,'개 상품']};
     Object.entries(stats).forEach(([key,[n,unit]]) => { $('stat-' + key).innerHTML = fmt(n) + '<span>' + unit + '</span>'; });
-    $('nav-count').textContent = fmt(productCount); $('product-count').textContent = fmt(productCount);
+    $('scope-label').textContent = (activeView === 'suppliers' ? '전체 매입처' : supplierLabel()) + ' 기준';
+    $('clear-supplier').hidden = activeView === 'suppliers' || activeSupplier === 'all';
+    $('nav-count').textContent = fmt(state.products.length); $('product-count').textContent = fmt(scoped.length);
     const query = $('search').value.trim().toLocaleLowerCase(), filter = $('stock-filter').value;
-    const list = state.products.filter(p => (!query || (p.name + ' ' + p.sku).toLocaleLowerCase().includes(query)) && (filter === 'all' || C.stockStatus(stocks.get(p.id),p.lowStock) === filter));
-    $('product-empty').hidden = productCount > 0; $('no-results').hidden = productCount === 0 || list.length > 0; $('product-table-wrap').hidden = list.length === 0;
-    $('list-summary').textContent = list.length === productCount ? '등록 상품 ' + fmt(productCount) + '개' : fmt(productCount) + '개 중 ' + fmt(list.length) + '개 표시';
+    const list = scoped.filter(p => (!query || (p.name + ' ' + p.sku + ' ' + p.supplier).toLocaleLowerCase().includes(query)) && (filter === 'all' || C.stockStatus(stocks.get(p.id),p.lowStock) === filter));
+    $('product-empty').hidden = state.products.length > 0;
+    $('no-results').hidden = state.products.length === 0 || list.length > 0;
+    $('product-table-wrap').hidden = list.length === 0;
+    $('list-summary').textContent = (activeSupplier === 'all' ? '' : supplierLabel() + ' · ') + (list.length === scoped.length ? '등록 상품 ' + fmt(scoped.length) + '개' : fmt(scoped.length) + '개 중 ' + fmt(list.length) + '개 표시');
+    $('csv-btn').innerHTML = icon('down') + (activeSupplier === 'all' ? 'CSV 내보내기' : '매입처 CSV');
+    $('csv-btn').title = '현재 매입처의 전체 상품 내보내기 (검색·재고 상태 필터 제외)';
     $('product-rows').innerHTML = list.map(p => {
       const c = C.calculate(p), qty = stocks.get(p.id), status = C.stockStatus(qty,p.lowStock), statusText = {normal:'정상',low:'재고 부족',out:'품절'}[status];
-      return '<tr><td><div class="product-name-cell"><div class="product-initial">' + icon('box') + '</div><div><span class="product-name">' + esc(p.name) + '</span><span class="product-sku">' + esc(p.sku || '코드 미등록') + '</span></div></div></td>' +
+      return '<tr><td><div class="product-name-cell"><div class="product-initial">' + icon('box') + '</div><div><span class="product-name">' + esc(p.name) + '</span><span class="product-sku">' + esc(p.sku || '코드 미등록') + '</span><span class="product-supplier">' + esc(p.supplier || '매입처 미지정') + '</span></div></div></td>' +
         '<td class="number">' + won(p.cost) + '<span class="sub-number">판매 ' + won(p.salePrice) + '</span></td>' +
         '<td class="number"><span class="profit-number' + (c.profit < 0 ? ' negative' : '') + '">' + won(c.profit) + '</span><span class="sub-number">' + (c.margin === null ? '이익률 —' : c.margin.toFixed(1) + '%') + '</span></td>' +
         '<td class="number"><span class="stock-quantity">' + fmt(qty) + '</span><br><span class="stock-badge ' + status + '">' + statusText + '</span></td>' +
         '<td><div class="table-actions"><button class="movement-btn" data-action="movement" data-id="' + esc(p.id) + '" aria-label="' + esc(p.name) + ' 입출고">입출고</button><button class="icon-button" data-action="edit" data-id="' + esc(p.id) + '" aria-label="' + esc(p.name) + ' 수정">' + icon('edit') + '</button></div></td></tr>';
     }).join('');
-    $('history-count').textContent = fmt(state.movements.length);
-    $('history-empty').hidden = state.movements.length > 0; $('history-table-wrap').hidden = !state.movements.length;
+    const ids = new Set(scoped.map(p => p.id)), history = state.movements.filter(m => ids.has(m.productId));
+    $('history-count').textContent = fmt(history.length);
+    $('history-empty').hidden = history.length > 0; $('history-table-wrap').hidden = !history.length;
     const names = new Map(state.products.map(p => [p.id,p]));
-    $('history-rows').innerHTML = state.movements.slice(-historyLimit).reverse().map(m => '<tr><td>' + esc(new Date(m.at).toLocaleString('ko-KR')) + '</td><td><strong>' + esc(names.get(m.productId).name) + '</strong></td><td><span class="stock-badge ' + (m.type === 'in' ? 'normal' : 'out') + '">' + (m.type === 'in' ? '입고' : '출고') + '</span></td><td class="number">' + (m.type === 'in' ? '+' : '−') + fmt(m.quantity) + '</td><td>' + esc(m.note || '—') + '</td></tr>').join('');
-    $('history-more').hidden = state.movements.length <= historyLimit;
+    $('history-rows').innerHTML = history.slice(-historyLimit).reverse().map(m => '<tr><td>' + esc(new Date(m.at).toLocaleString('ko-KR')) + '</td><td><strong>' + esc(names.get(m.productId).name) + '</strong><span class="product-supplier">' + esc(names.get(m.productId).supplier || '매입처 미지정') + '</span></td><td><span class="stock-badge ' + (m.type === 'in' ? 'normal' : 'out') + '">' + (m.type === 'in' ? '입고' : '출고') + '</span></td><td class="number">' + (m.type === 'in' ? '+' : '−') + fmt(m.quantity) + '</td><td>' + esc(m.note || '—') + '</td></tr>').join('');
+    $('history-more').hidden = history.length <= historyLimit;
+    renderSuppliers(groups);
   }
   function switchView(view) {
-    const products = view === 'products';
-    $('products-view').hidden = !products; $('history-view').hidden = products;
+    activeView = view;
+    ['products','history','suppliers'].forEach(name => { $(name + '-view').hidden = name !== view; });
     document.querySelectorAll('[data-view]').forEach(button => {
       const active = button.dataset.view === view; button.classList.toggle('active',active);
       if (active) button.setAttribute('aria-current','page'); else button.removeAttribute('aria-current');
     });
-    $('breadcrumb-current').textContent = products ? '상품 관리' : '입출고 이력';
-    $('page-title').textContent = products ? '상품 수익 · 재고' : '입출고 이력';
-    $('page-description').textContent = products ? '원가부터 재고까지, 판매에 필요한 숫자를 한눈에.' : '재고가 움직인 순간을 빠짐없이 기록하세요.';
+    const titles = {products:['상품 관리','상품 수익 · 재고','원가부터 재고까지, 판매에 필요한 숫자를 한눈에.'],history:['입출고 이력','입출고 이력','매입처별로 재고가 움직인 순간을 확인하세요.'],suppliers:['매입처 관리','매입처별 상품 · 재고','공급사마다 다른 상품과 원가, 한곳에서 관리하세요.']};
+    const [crumb,title,description] = titles[view];
+    $('breadcrumb-current').textContent = crumb; $('page-title').textContent = title; $('page-description').textContent = description;
+    render();
   }
+  function selectSupplier(token) {
+    activeSupplier = token; historyLimit = 100; render();
+  }
+  function openSupplierRename(name) {
+    $('supplier-form').reset(); $('supplier-original').value = name; $('supplier-name').value = name;
+    const count = state.products.filter(p => p.supplier === name).length;
+    $('supplier-rename-note').textContent = fmt(count) + '개 상품의 매입처 이름을 함께 변경합니다. 재고와 입출고 기록은 유지됩니다.';
+    formError('supplier-error',''); $('supplier-dialog').showModal(); $('supplier-name').focus(); $('supplier-name').select();
+  }
+
   function updateMovement() {
     const id = $('movement-product-id').value, current = C.stockFor(state,id), value = $('movement-quantity').value;
     const qty = Number(value), type = document.querySelector('input[name="movement-type"]:checked').value;
@@ -292,7 +401,7 @@ return Object.freeze({MAX_STOCK,number,validateProduct,calculate,emptyState,stoc
     event.preventDefault(); formError('form-error','');
     try {
       const draft = C.validateProduct(rawDraft()), id = $('product-id').value;
-      if (!C.uniqueSku(state,draft.sku,id)) throw new Error('이미 등록된 상품 코드입니다. 다른 코드를 입력해주세요.');
+      if (!C.uniqueSku(state,draft.sku,id,draft.supplier)) throw new Error('이 매입처에 이미 등록된 상품 코드입니다. 다른 코드를 입력해주세요.');
       let next;
       if (id) {
         if (!state.products.some(p => p.id === id)) throw new Error('수정할 상품을 찾을 수 없습니다. 다시 선택해주세요.');
@@ -333,8 +442,8 @@ return Object.freeze({MAX_STOCK,number,validateProduct,calculate,emptyState,stoc
     } catch (_) { download('tnd-backup-' + datePart() + '.json',JSON.stringify(state,null,2),'application/json;charset=utf-8'); toast('현재 화면 자료를 백업했습니다.'); }
   });
   $('csv-btn').addEventListener('click',() => {
-    if (!state.products.length) { toast('먼저 상품을 등록해주세요.'); return; }
-    download('tnd-products-' + datePart() + '.csv',C.toCsv(state),'text/csv;charset=utf-8'); toast('전체 상품을 CSV로 내보냈습니다.');
+    if (!C.filterBySupplier(state.products,activeSupplier).length) { toast('먼저 상품을 등록해주세요.'); return; }
+    download('tnd-products-' + datePart() + '.csv',C.toCsv(state,activeSupplier),'text/csv;charset=utf-8'); toast(supplierLabel() + ' 상품을 CSV로 내보냈습니다.');
   });
   $('restore-btn').addEventListener('click',() => $('restore-file').click());
   $('restore-file').addEventListener('change',async event => {
@@ -351,9 +460,9 @@ return Object.freeze({MAX_STOCK,number,validateProduct,calculate,emptyState,stoc
     try {
       let next = C.emptyState();
       const samples = [
-        {name:'원목 안내판',sku:'SAMPLE-001',cost:4500,salePrice:12900,customerShipping:3000,shippingCost:3200,packingCost:300,feeRate:5.5,fixedFee:0,feeOnShipping:true,lowStock:5,quantity:24},
-        {name:'무지 머그컵',sku:'SAMPLE-002',cost:3800,salePrice:9900,customerShipping:0,shippingCost:3000,packingCost:500,feeRate:6,fixedFee:0,feeOnShipping:false,lowStock:5,quantity:3},
-        {name:'택배 포장 세트',sku:'SAMPLE-003',cost:1200,salePrice:4900,customerShipping:3000,shippingCost:3000,packingCost:100,feeRate:5,fixedFee:0,feeOnShipping:false,lowStock:10,quantity:0}
+        {name:'원목 안내판',sku:'SAMPLE-001',supplier:'우드파트너 (예시)',cost:4500,salePrice:12900,customerShipping:3000,shippingCost:3200,packingCost:300,feeRate:5.5,fixedFee:0,feeOnShipping:true,lowStock:5,quantity:24},
+        {name:'무지 머그컵',sku:'SAMPLE-002',supplier:'리빙도매 (예시)',cost:3800,salePrice:9900,customerShipping:0,shippingCost:3000,packingCost:500,feeRate:6,fixedFee:0,feeOnShipping:false,lowStock:5,quantity:3},
+        {name:'택배 포장 세트',sku:'SAMPLE-003',supplier:'우드파트너 (예시)',cost:1200,salePrice:4900,customerShipping:3000,shippingCost:3000,packingCost:100,feeRate:5,fixedFee:0,feeOnShipping:false,lowStock:10,quantity:0}
       ];
       samples.forEach(sample => {
         const id = uuid(), {quantity,...p} = sample;
@@ -363,11 +472,37 @@ return Object.freeze({MAX_STOCK,number,validateProduct,calculate,emptyState,stoc
       commit(next); resetEditor(); switchView('products'); toast('예시 데이터입니다. 실제 상품으로 수정해 사용하세요.');
     } catch (error) { toast(error.message); }
   });
+
+  ['supplier-filter','history-supplier-filter'].forEach(id => $(id).addEventListener('change',event => selectSupplier(event.target.value)));
+  $('clear-supplier').addEventListener('click',() => selectSupplier('all'));
+  $('supplier-add-product-btn').addEventListener('click',() => { resetEditor(); focusEditor(); $('supplier').focus({preventScroll:true}); });
+  $('supplier-rows').addEventListener('click',event => {
+    const button = event.target.closest('button[data-supplier-action]'); if (!button) return;
+    if (button.dataset.supplierAction === 'view') {
+      activeSupplier = button.dataset.supplier; $('search').value = ''; $('stock-filter').value = 'all'; switchView('products');
+      $('main').scrollIntoView({block:'start'});
+    } else openSupplierRename(button.dataset.supplier.slice('supplier:'.length));
+  });
+  $('close-supplier').addEventListener('click',() => $('supplier-dialog').close());
+  $('supplier-form').addEventListener('input',() => formError('supplier-error',''));
+  $('supplier-form').addEventListener('submit',event => {
+    event.preventDefault(); formError('supplier-error','');
+    try {
+      const previous = $('supplier-original').value, name = C.normalizeSupplier($('supplier-name').value);
+      const wasSelected = activeSupplier === C.supplierToken(previous), next = C.renameSupplier(state,previous,name);
+      commit(next);
+      if (wasSelected) { activeSupplier = C.supplierToken(name); render(); }
+      if ($('supplier').value === previous) $('supplier').value = name;
+      $('supplier-dialog').close(); toast('매입처 이름을 변경했습니다.');
+    } catch(error) { formError('supplier-error',error.message); }
+  });
+
   window.addEventListener('storage',event => {
     if (event.key !== KEY && event.key !== null) return;
     blocked = true;
     alertStorage('다른 창에서 자료가 변경되었습니다. 입력 충돌을 막기 위해 저장을 멈췄습니다. 이 화면을 새로고침한 뒤 계속해주세요.');
     if ($('movement-dialog').open) $('movement-dialog').close();
+    if ($('supplier-dialog').open) $('supplier-dialog').close();
   });
   load(); render(); preview();
 })();
